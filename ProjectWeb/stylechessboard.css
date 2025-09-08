@@ -1,0 +1,45 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+.chessboard {
+  display: grid;
+  grid-template-columns: 40px repeat(8, 60px) 40px;
+  grid-template-rows: 40px repeat(8, 60px) 40px;
+  border: 3px solid #222;
+  background: white;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  font-size: 40px;
+  text-align: center;
+  line-height: 60px;
+}
+
+.dark {
+  background: #0a3d91;
+} /* xanh đậm */
+.light {
+  background: #fcecc9;
+} /* trắng ngà */
+
+.label,
+.corner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #0a3d91;
+}
+
+.corner {
+  background: white;
+}

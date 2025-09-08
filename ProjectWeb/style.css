@@ -1,0 +1,137 @@
+:root {
+  /* Biến dễ chỉnh */
+  --logo-size: 400px;
+  --logo-top: -50px;
+  --logo-left: -100px;
+  --form-width: 900px;
+}
+
+/* Nền + layout tổng */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+}
+
+/* Logo dạng button */
+.logo-btn {
+  all: unset;
+  position: fixed;
+  top: var(--logo-top);
+  left: var(--logo-left);
+  cursor: pointer;
+  display: inline-block;
+  z-index: 1000;
+}
+.logo-btn img {
+  width: var(--logo-size);
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Line đen dưới logo */
+.logo-line {
+  position: fixed;
+  top: 90px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: black;
+  z-index: -1; /* thấp hơn form để nằm ẩn sau */
+}
+
+/* Bọc form để căn giữa màn hình */
+.form-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-left: 700px;
+  width: 100%;
+}
+
+/* Container chính */
+.container {
+  max-width: var(--form-width);
+}
+
+/* Form */
+form,
+.form-card {
+  position: relative;
+  z-index: 9999;
+  max-width: var(--form-width);
+  background: #fff;
+  border-radius: 15px;
+  padding: 60px 30px; /* 👈 tăng padding trên dưới để form cao hơn */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out;
+  right: -10px; /* dịch form sang trái/phải dễ dàng */
+  top: 0px;
+}
+form:hover,
+.form-card:hover {
+  transform: translateY(0px); /* Hiệu ứng nâng nhẹ khi hover */
+}
+/* Tiêu đề */
+form h2 {
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #2575fc;
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+/* Label + Input */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+.form-group label {
+  width: 120px;
+  margin: 0;
+  font-weight: 600;
+  color: #444;
+}
+.form-group .form-control {
+  flex: 1;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  transition: 0.3s;
+}
+.form-group .form-control:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+}
+
+/* Radio */
+.form-group div {
+  flex: 1;
+}
+.form-check-input:checked {
+  background-color: #2575fc;
+  border-color: #2575fc;
+}
+
+/* Nút submit */
+.btn-primary {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 12px;
+  width: 100%;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  transform: scale(1.03);
+}
