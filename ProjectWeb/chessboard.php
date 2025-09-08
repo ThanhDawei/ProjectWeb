@@ -22,8 +22,8 @@
     display:flex;align-items:center;justify-content:center;
     user-select:none; cursor:pointer;
   }
-  .light{ background:#fdf0d9; }   /* kem */
-  .dark{  background:#173d8f; }   /* xanh */
+  .light{ background:#fdf0d9; }   
+  .dark{  background:#173d8f; }   
   .piece{
     font-size:40px;
   }
@@ -35,9 +35,9 @@
     font-weight:700;color:#173d8f;background:#fff;font-size:16px;
     user-select:none;
   }
-  .sel{ outline:4px solid #e11; }             /* ô được chọn */
-  .can{ outline:4px solid #f59e0b }           /* nước đi hợp lệ */
-  .check{ background:#ff6b6b !important; }    /* vua đang bị chiếu */
+  .sel{ outline:4px solid #e11; }             
+  .can{ outline:4px solid #f59e0b }           
+  .check{ background:#ff6b6b !important; }    
   #status{ 
     font-weight:700;color:#0f172a;text-align:center;
     min-height:2em;display:flex;align-items:center;justify-content:center;
@@ -73,26 +73,26 @@
 </div>
 
 <script>
-/* ========= Dữ liệu & helper ========= */
+
 const boardEl = document.getElementById('board');
 const statusEl = document.getElementById('status');
 
-let turn = 'w'; // 'w' = trắng, 'b' = đen
+let turn = 'w'; 
 let gameOver = false;
 
-// Bảng khởi tạo (hàng 8 -> hàng 1)
+
 let initial = [
-  ['r','n','b','q','k','b','n','r'], //8
-  ['p','p','p','p','p','p','p','p'], //7
-  ['.','.','.','.','.','.','.','.'], //6
-  ['.','.','.','.','.','.','.','.'], //5
-  ['.','.','.','.','.','.','.','.'], //4
-  ['.','.','.','.','.','.','.','.'], //3
-  ['P','P','P','P','P','P','P','P'], //2
-  ['R','N','B','Q','K','B','N','R']  //1
+  ['r','n','b','q','k','b','n','r'], 
+  ['p','p','p','p','p','p','p','p'], 
+  ['.','.','.','.','.','.','.','.'], 
+  ['.','.','.','.','.','.','.','.'], 
+  ['.','.','.','.','.','.','.','.'], 
+  ['.','.','.','.','.','.','.','.'], 
+  ['P','P','P','P','P','P','P','P'], 
+  ['R','N','B','Q','K','B','N','R']  
 ];
 
-// Unicode cho quân
+
 const glyph = {
   'K':'♔','Q':'♕','R':'♖','B':'♗','N':'♘','P':'♙',
   'k':'♚','q':'♛','r':'♜','b':'♝','n':'♞','p':'♟',
@@ -102,7 +102,7 @@ const glyph = {
 const files = ['a','b','c','d','e','f','g','h'];
 const ranks = [8,7,6,5,4,3,2,1];
 
-let cells = []; // 8x8 DOM refs
+let cells = []; 
 
 function makeLabel(txt){
   const d = document.createElement('div');
@@ -129,7 +129,7 @@ function resetGame(){
   render();
 }
 
-/* ========= Tìm vua ========= */
+
 function findKing(color){
   const king = color === 'w' ? 'K' : 'k';
   for(let r = 0; r < 8; r++){
@@ -140,7 +140,7 @@ function findKing(color){
   return null;
 }
 
-/* ========= Kiểm tra ô có bị tấn công không ========= */
+
 function isUnderAttack(r, c, byColor){
   for(let rr = 0; rr < 8; rr++){
     for(let cc = 0; cc < 8; cc++){
@@ -149,14 +149,14 @@ function isUnderAttack(r, c, byColor){
       const isWhite = piece === piece.toUpperCase();
       if((byColor === 'w' && !isWhite) || (byColor === 'b' && isWhite)) continue;
       
-      const moves = getPieceMoves(rr, cc, false); // không kiểm tra check để tránh infinite recursion
+      const moves = getPieceMoves(rr, cc, false); 
       if(moves.some(([mr, mc]) => mr === r && mc === c)) return true;
     }
   }
   return false;
 }
 
-/* ========= Kiểm tra vua có đang bị chiếu không ========= */
+
 function isInCheck(color){
   const kingPos = findKing(color);
   if(!kingPos) return false;
@@ -164,28 +164,28 @@ function isInCheck(color){
   return isUnderAttack(kingPos[0], kingPos[1], enemyColor);
 }
 
-/* ========= Kiểm tra nước đi có hợp lệ không (không để vua bị chiếu) ========= */
+
 function isLegalMove(fromR, fromC, toR, toC){
-  // Lưu trạng thái ban đầu
+  
   const originalPiece = initial[toR][toC];
   const movingPiece = initial[fromR][fromC];
   
-  // Thực hiện nước đi tạm thời
+  
   initial[toR][toC] = movingPiece;
   initial[fromR][fromC] = '.';
   
-  // Kiểm tra vua có bị chiếu không
+  
   const color = movingPiece === movingPiece.toUpperCase() ? 'w' : 'b';
   const inCheck = isInCheck(color);
   
-  // Khôi phục trạng thái
+  
   initial[fromR][fromC] = movingPiece;
   initial[toR][toC] = originalPiece;
   
   return !inCheck;
 }
 
-/* ========= Luật di chuyển cơ bản ========= */
+
 function inside(r,c){ return r>=0 && r<8 && c>=0 && c<8; }
 function isOpposite(a,b){
   if(a==='.'||b==='.') return false;
@@ -262,7 +262,7 @@ function getMoves(r, c){
   return getPieceMoves(r, c, true);
 }
 
-/* ========= Tìm tất cả nước đi hợp lệ của một màn ========= */
+
 function getAllLegalMoves(color){
   const moves = [];
   for(let r = 0; r < 8; r++){
@@ -281,19 +281,19 @@ function getAllLegalMoves(color){
   return moves;
 }
 
-/* ========= Kiểm tra điều kiện kết thúc game ========= */
+
 function checkGameStatus(){
   const legalMoves = getAllLegalMoves(turn);
   const inCheck = isInCheck(turn);
   
   if(legalMoves.length === 0){
     if(inCheck){
-      // Chiếu bí
+      
       gameOver = true;
       const winner = turn === 'w' ? 'Đen' : 'Trắng';
       return `checkmate:${winner} thắng! (Chiếu bí)`;
     } else {
-      // Hòa cờ (pat)
+      
       gameOver = true;
       return 'stalemate:Hòa cờ! (Không có nước đi hợp lệ)';
     }
@@ -324,7 +324,7 @@ function updateStatus(){
   }
 }
 
-/* ========= Render ========= */
+
 let selected=null, legalMoves=[];
 function render(){
   boardEl.innerHTML=''; cells=[];
@@ -332,7 +332,7 @@ function render(){
   files.forEach(f=>boardEl.appendChild(makeLabel(f)));
   boardEl.appendChild(makeLabel(''));
   
-  // Tìm vị trí vua đang bị chiếu
+  
   let kingInCheck = null;
   if(isInCheck('w')){
     kingInCheck = findKing('w');
@@ -348,7 +348,7 @@ function render(){
       div.className='cell '+((r+c)%2===0?'light':'dark');
       div.dataset.row=r; div.dataset.col=c;
       
-      // Highlight vua đang bị chiếu
+      
       if(kingInCheck && kingInCheck[0] === r && kingInCheck[1] === c){
         div.classList.add('check');
       }
@@ -378,7 +378,7 @@ function render(){
   updateStatus();
 }
 
-/* ========= Click handler ========= */
+
 boardEl.addEventListener('click',ev=>{
   if(gameOver) return;
   

@@ -1,12 +1,10 @@
 :root {
-  /* Biến dễ chỉnh */
   --logo-size: 400px;
   --logo-top: -50px;
   --logo-left: -100px;
   --form-width: 900px;
 }
 
-/* Nền + layout tổng */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
@@ -14,8 +12,6 @@ body {
   margin: 0;
   position: relative;
 }
-
-/* Logo dạng button */
 .logo-btn {
   all: unset;
   position: fixed;
@@ -32,8 +28,6 @@ body {
   user-select: none;
   -webkit-user-drag: none;
 }
-
-/* Line đen dưới logo */
 .logo-line {
   position: fixed;
   top: 90px;
@@ -41,10 +35,8 @@ body {
   width: 100%;
   height: 4px;
   background: black;
-  z-index: -1; /* thấp hơn form để nằm ẩn sau */
+  z-index: -1;
 }
-
-/* Bọc form để căn giữa màn hình */
 .form-wrapper {
   min-height: 100vh;
   display: flex;
@@ -54,12 +46,10 @@ body {
   width: 100%;
 }
 
-/* Container chính */
 .container {
   max-width: var(--form-width);
 }
 
-/* Form */
 form,
 .form-card {
   position: relative;
@@ -67,17 +57,17 @@ form,
   max-width: var(--form-width);
   background: #fff;
   border-radius: 15px;
-  padding: 60px 30px; /* 👈 tăng padding trên dưới để form cao hơn */
+  padding: 60px 30px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease-in-out;
-  right: -10px; /* dịch form sang trái/phải dễ dàng */
+  right: -10px;
   top: 0px;
 }
 form:hover,
 .form-card:hover {
-  transform: translateY(0px); /* Hiệu ứng nâng nhẹ khi hover */
+  transform: translateY(0px);
 }
-/* Tiêu đề */
+
 form h2 {
   font-weight: bold;
   color: #333;
@@ -88,7 +78,6 @@ form h2 {
   margin-bottom: 20px;
 }
 
-/* Label + Input */
 .form-group {
   display: flex;
   align-items: center;
@@ -112,7 +101,6 @@ form h2 {
   box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
 }
 
-/* Radio */
 .form-group div {
   flex: 1;
 }
@@ -121,7 +109,6 @@ form h2 {
   border-color: #2575fc;
 }
 
-/* Nút submit */
 .btn-primary {
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   border: none;

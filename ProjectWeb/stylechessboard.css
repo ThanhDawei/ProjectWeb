@@ -25,11 +25,10 @@ body {
 
 .dark {
   background: #0a3d91;
-} /* xanh đậm */
+}
 .light {
   background: #fcecc9;
-} /* trắng ngà */
-
+}
 .label,
 .corner {
   display: flex;
